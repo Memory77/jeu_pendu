@@ -8,3 +8,25 @@ import random
 nombre_tentative = random.randint(1,8)
 print(f"tu as {nombre_tentative} tentative(s) pour trouver le mot !")
 
+liste_mot = ["ordinateur", "bibliotheque", "television","elephant","girafe","rhinoceros","etoile","volcan","cascade","refrigerateur","microphone","vacances","papillon"]
+
+mot_a_deviner = random.choice(liste_mot)
+print(mot_a_deviner)
+
+mot_a_jour = "_" * len(mot_a_deviner)
+
+print(mot_a_jour)
+
+while nombre_tentative > 0:
+    input_utilisateur = input("entrez une lettre")
+    
+    if input_utilisateur == mot_a_deviner:
+        print("vous avez gagné !") 
+    elif input_utilisateur in mot_a_deviner:
+            mot_a_jour = mot_a_jour.replace("_",input_utilisateur)
+    else:
+        nombre_tentative -= 1
+
+
+
+print("vous avez trouvé !")

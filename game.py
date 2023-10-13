@@ -1,16 +1,29 @@
 import random
-from PIL import Image
 import ascii
+from ascii import fonction
 # un chiffre est donné au hasard qui sera le nombre de tentative qu'on a pour trouver le mot
 # chat gpt peut me generer une serie de mot à deviner
 # je peux faire un tableau contenant les niveaux (8 étapes) afficchez un dessin du pendu à chaque tentative tarée
 # chaque étape contient un moment du pendu, si le caractere que met la personne ne se trouve pas dans le mot selectionné, 
 # alors il passe a l'etape suivante
 
-nombre_tentative = random.randint(1,8)
+difficulte = int(input("Renseignez le niveau difficulté: \n  1 = Facile \n  2 = Intermediaire \n  3 = Difficile \n"))
+
+if difficulte == 1:
+    liste_mot = ["fruit", "voyage", "etoile", "volcan","chat", "chien", "livre","ami"]
+    nombre_tentative = 8
+elif difficulte == 2:
+    liste_mot = ["etoile","vacances","cascade", "montagne", "maison", "plage"]
+    nombre_tentative = 6
+elif difficulte == 3:
+    liste_mot = ["ordinateur", "bibliotheque", "television","elephant","girafe","rhinoceros","refrigerateur","microphone","papillon"]
+    nombre_tentative = 4
+else:
+    print("vous devez renseigner un niveau de difficulté (1 2 ou 3)")
+    
 print(f"tu as {nombre_tentative} tentative(s) pour trouver le mot !")
 
-liste_mot = ["ordinateur", "bibliotheque", "television","elephant","girafe","rhinoceros","etoile","volcan","cascade","refrigerateur","microphone","vacances","papillon"]
+
 
 mot_a_deviner = random.choice(liste_mot)
 #print(mot_a_deviner)
@@ -32,19 +45,12 @@ while nombre_tentative > 0:
         print(nombre_tentative)
         print(f"Il vous reste {nombre_tentative} tentative(s).")
         compteur += 1
-        # print(compteur)
-        if compteur == 1:
-            print(ascii.ascii_1)
-        elif compteur == 2:
-            print(ascii.ascii_2)
-        elif compteur == 3:
-            print(ascii.ascii_3)
-        elif compteur == 4:
-            print(ascii.ascii_4)
-        elif compteur == 5:
-            print(ascii.ascii_5)
+        print(fonction(compteur))
         print(mot_a_jour)
-        
+        if compteur > 4:
+            indice = random.choice(mot_a_deviner)
+            print(f"indice : {indice}")
+            
     if "_" not in mot_a_jour:
         print("Bravo, vous avez trouvé le mot !")
         break

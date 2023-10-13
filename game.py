@@ -1,6 +1,6 @@
 import random
 import ascii
-from ascii import fonction
+from ascii import dessin
 # un chiffre est donné au hasard qui sera le nombre de tentative qu'on a pour trouver le mot
 # chat gpt peut me generer une serie de mot à deviner
 # je peux faire un tableau contenant les niveaux (8 étapes) afficchez un dessin du pendu à chaque tentative tarée
@@ -17,7 +17,7 @@ elif difficulte == 2:
     nombre_tentative = 6
 elif difficulte == 3:
     liste_mot = ["ordinateur", "bibliotheque", "television","elephant","girafe","rhinoceros","refrigerateur","microphone","papillon"]
-    nombre_tentative = 4
+    nombre_tentative = 5
 else:
     print("vous devez renseigner un niveau de difficulté (1 2 ou 3)")
     
@@ -31,12 +31,13 @@ mot_a_deviner = random.choice(liste_mot)
 mot_a_jour = ["_"] * len(mot_a_deviner)
 
 print(mot_a_jour)
-compteur = 0
+compteur_erreurs = 0
 while nombre_tentative > 0:
     input_utilisateur = input("entrez une lettre : ")
     
     if input_utilisateur in mot_a_deviner:
-        for i in range(len(mot_a_deviner)):
+        #parcourir chaque lettre du mot a deviner
+        for i in range(len(mot_a_deviner)): 
             if mot_a_deviner[i] == input_utilisateur:
                 mot_a_jour[i] = input_utilisateur
                 print(mot_a_jour)
@@ -44,10 +45,12 @@ while nombre_tentative > 0:
         nombre_tentative -= 1
         print(nombre_tentative)
         print(f"Il vous reste {nombre_tentative} tentative(s).")
-        compteur += 1
-        print(fonction(compteur))
+        compteur_erreurs += 1
+        #fonction qui me renvoi un ascii en fonction du cpt
+        print(dessin(compteur_erreurs))
         print(mot_a_jour)
-        if compteur > 4:
+        #rajout d'indice si trop d'erreurs
+        if compteur_erreurs > 4:
             indice = random.choice(mot_a_deviner)
             print(f"indice : {indice}")
             

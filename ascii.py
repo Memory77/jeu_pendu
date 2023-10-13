@@ -80,7 +80,7 @@ ascii_8 = """
 
 
 
-def fonction(compteur):
+def dessin(compteur):
     if compteur == 1:
         return ascii_2
     elif compteur == 2:
